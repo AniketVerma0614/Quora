@@ -52,7 +52,7 @@ app.get("/",(req,res) =>{
 app.post("/posts",(req,res)=>{
     let {username,content}=req.body;
     posts.push({username,content});
-    res.send("post request working");
+    res.redirect("/posts");
 });
 
 app.listen(port, ()=>{
