@@ -14,17 +14,18 @@ app.use(express.static(path.join(__dirname,"public")));
 
 
 let posts = [
-		{
+		{       id : "1a",
 				username : "apnacollege",
 				content : "I love Coding!"
 		},
 		
-		{
+		{       
+                id : "2b",
 				username : "SharadhaKhapra",
 				content : "HardWork is Important to achieve success !!!"
 		},
 		
-		{
+		{       id : "3c",
 				username : "rahulKumar",
 				content : "I got selected for my first Internship !!!"
 		},
@@ -54,6 +55,19 @@ app.post("/posts",(req,res)=>{
     posts.push({username,content});
     res.redirect("/posts");
 });
+
+//To Retieve - id with a Specfic Posts ...
+app.get("/posts/:id",(req,res)=>{
+   let {id} =req.params;
+   let post = posts.find((p)=> id ===p.id);
+
+//    console.log(post);
+
+   res.render("show.ejs",{post});
+});
+
+
+
 
 app.listen(port, ()=>{
 		console.log("lsitening to port : 8080");
